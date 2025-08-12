@@ -3,12 +3,35 @@ import { ProjectsService } from './projects.service';
 import { CreateProjectDto } from './dtos/create-project.dto';
 import { UpdateProjectDto } from './dtos/update-project.dto';
 
+
+const routes: any[] = [];
+
+function create(name) {
+    console.log(name)
+}
+
+function post(func) {
+    function inner(name) {
+        routes.push({ url: 'projects', method: 'POST' });
+        func(name);
+        console.log("POST projects mapped")
+    }
+    return inner;
+}
+
+const secretFunc = post(create);
+
+secretFunc("mohammad");
+
+
 @Controller('projects')
 export class ProjectsController {
     constructor(private readonly projectsService: ProjectsService) { }
 
     @Post()
     async create(@Body() createProjectDto: CreateProjectDto) {
+        // console.log(createProjectDto);
+        // return
         return this.projectsService.create(createProjectDto);
     }
 
