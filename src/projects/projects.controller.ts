@@ -4,24 +4,24 @@ import { CreateProjectDto } from './dtos/create-project.dto';
 import { UpdateProjectDto } from './dtos/update-project.dto';
 
 
-const routes: any[] = [];
+// const routes: any[] = [];
 
-function create(name) {
-    console.log(name)
-}
+// function create(name) {
+//     console.log(name)
+// }
 
-function post(func) {
-    function inner(name) {
-        routes.push({ url: 'projects', method: 'POST' });
-        func(name);
-        console.log("POST projects mapped")
-    }
-    return inner;
-}
+// function post(func) {
+//     function inner(name) {
+//         routes.push({ url: 'projects', method: 'POST' });
+//         func(name);
+//         console.log("POST projects mapped")
+//     }
+//     return inner;
+// }
 
-const secretFunc = post(create);
+// const secretFunc = post(create);
 
-secretFunc("mohammad");
+// secretFunc("mohammad");
 
 
 @Controller('projects')

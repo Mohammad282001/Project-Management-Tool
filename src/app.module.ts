@@ -4,18 +4,21 @@ import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ProjectsModule } from './projects/projects.module';
-
-
-
+import { TasksModule } from './tasks/tasks.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot(
-      'mongodb+srv://PMS2:PMS2@cluster0.92aaigo.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
-    ),
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+
+    MongooseModule.forRoot(`${process.env.MONGODB_URI}`),
+
     ProjectsModule,
+
+    TasksModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }
